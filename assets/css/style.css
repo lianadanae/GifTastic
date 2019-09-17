@@ -1,0 +1,19 @@
+ body { background-color:cadetblue;
+
+ }
+.header {
+    height: 450px;  
+    width: 800px;
+    margin: auto;
+    background-image: url("../images/theofficeheader.jpg");
+    
+}
+
+.body {
+    text-align: center;
+  
+
+}
+/* #button-group {
+
+} */
