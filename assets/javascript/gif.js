@@ -26,17 +26,27 @@ $(document).ready(function () {
       var results = response.data
       for (var i = 0; i < results.length; i++) {
         console.log(results[i].images.fixed_height.url);
-        
+
         var gifDiv = $("<div>");
         var charImage = $("<img>");
-       
-      charImage.attr('src', results[i].images.fixed_height.url);
-      
 
-              gifDiv.prepend();
-              gifDiv.prepend(charImage);
+        // charImage.attr('src', results[i].images.fixed_height.url);
 
-              $("#gifDiv").prepend(gifDiv);
+
+
+
+
+
+        // var imageDiv = $("<div>");
+        imageDiv.addClass("play");
+        imageDiv.attr("data-state", "still");
+        imageDiv.attr("data-name", topic);
+        imageDiv.attr("data-still", response.data[i].images.fixed_height_still.url);
+        imageDiv.attr("data-animate", response.data[i].images.fixed_height.url)
+
+        $(gifDiv).append(charImage);
+        $(gifDiv).append(charImage);
+        $("#gifDiv").append(gifDiv);
       }
     });
   });
