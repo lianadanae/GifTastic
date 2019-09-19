@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
 //Array of The Office characters 
 var topics = ["Michael Scott", "Pam Beesly", "Jim Halpert", "Dwight Schrute", "Kevin Malone",
@@ -6,23 +6,27 @@ var topics = ["Michael Scott", "Pam Beesly", "Jim Halpert", "Dwight Schrute", "K
 ];
 
 function renderButtons() {
-  $('#button-group').empty('')
+  $('#button-group').empty();
+
   for (var i = 0; i < topics.length; i++) {
-    var button = $("<button>").text(topics[i]);
+
+    var button = $("<button>");
     button.attr("data-character", topics[i]);
     button.addClass("character-button");
+    button.text(topics[i]);
     $("#button-group").append(button);
   }
 }
-
-$('#add-character-button').on('click', function (event) {
-  event.preventDefault();
-  console.log('this works')
-  var newCharacter = $('#new-character-input').val().trim()
-  topics.push(newCharacter)
-  
-})
 renderButtons();
+
+$("#add-character-button").on("click", function(event) {
+  event.preventDefault();
+  var newCharacter = $("#new-character-input").val().trim();
+  topics.push(newCharacter);
+  renderButtons();
+  $("#new-character-input").val("").select();
+})
+
 
 $(".character-button").on("click", function () {
   // Find out which button was clicked
@@ -48,9 +52,9 @@ $(".character-button").on("click", function () {
       charImage.attr('data-state', 'still');
       charImage.addClass('gifImg');
 
-      $("#gifDiv").append(charImage)
-      $("#gifDiv").append(gifDiv)
-      $("#gifDiv").append(p)
+      gifDiv.append(charImage);
+      gifDiv.append(p);
+      $("#gifDiv").prepend(gifDiv);
     }
     
   });
