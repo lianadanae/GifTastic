@@ -23,6 +23,7 @@ $('#add-character-button').on('click', function (event) {
   
 })
 renderButtons();
+
 $(".character-button").on("click", function () {
   // Find out which button was clicked
   var character = $(this).attr("data-character");
@@ -37,35 +38,37 @@ $(".character-button").on("click", function () {
     for (var i = 0; i < results.length; i++) {
 
       var gifDiv = $("<div>");
-      var ratingDiv = $("<p>");
-      ratingDiv.text(results[i].rating);
-      var charImage = $("<img>");
+      var rating = results[i].rating;
+      var p = $('<p>').text("Rating: " + rating);
+      var charImage = $('<img>');
 
-      charImage.attr("data-state", "still")
-      charImage.attr('src', results[i].images.original_still.url)
-      charImage.addClass('gifImg')
-      charImage.attr("data-still", results[i].images.original_still.url)
-      //charImage.attr("data-animate", results[i].images.original.url)​
+      charImage.attr('src', results[i].images.fixed_height_still.url);
+      charImage.attr('data-still', results[i].images.fixed_height_still.url);
+      charImage.attr('data-animate', results[i].images.fixed_height.url);
+      charImage.attr('data-state', 'still');
+      charImage.addClass('gifImg');
+
       $("#gifDiv").append(charImage)
-      $("#gifDiv").append(gifDiv);
-
+      $("#gifDiv").append(gifDiv)
+      $("#gifDiv").append(p)
     }
     
   });
   
 });
 
-$(document).on("click", ".gifImg", function () {
-  var state = $(this).attr("data-state");
-  if (state === "still") {
-    $(this).attr("src", $(this).attr("data-animate"));
-    $(this).attr("data-state", "animate");
+$(document).on("click", '.gifImg', function () {
+  var state = $(this).attr('data-state');
+  console.log(state)
+  if ( state === 'still') {
+    $(this).attr('src', $(this).data('animate'));
+    $(this).attr('data-state', 'animate');
   } 
   else {
-    $(this).attr("src", $(this).attr("data-still"));
-    $(this).attr("data-state", "still");
+    $(this).attr('src', $(this).data('still'));
+    $(this).attr('data-state', 'still');
   }
-  console.log(state)
+  
 
 });
 
